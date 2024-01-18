@@ -1,0 +1,35 @@
+1. Create database
+CREATE DATABASE hospital;
+2. users table
+CREATE TABLE users(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(120),
+    email varchar(70),
+    phone varchar(20),
+    password varchar(100),
+    role varchar(70),
+    address varchar(200),
+    qualification varchar(200)
+    );
+3. records table
+CREATE TABLE records(
+	id int PRIMARY KEY AUTO_INCREMENT,
+    problem varchar(500),
+    userId int,
+    doctorId int,
+    status varchar(30),
+    Report varchar(500),
+    FOREIGN KEY (userId) REFERENCES users(id),
+    FOREIGN KEY (doctorId) REFERENCES users(id)
+);
+4. Doctor table
+CREATE TABLE doctors(
+     id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(120),
+    email varchar(70),
+    phone varchar(20),
+    password varchar(100),
+    role varchar(70),
+    address varchar(200),
+    qualification varchar(200)
+    );
