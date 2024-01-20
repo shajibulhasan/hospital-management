@@ -129,7 +129,7 @@
                       <th>Doctor Name</th>                      
                       <th>Problem</th>
                       <th>Serial No</th>                   
-                      <th>Report</th>                 
+                      <th>Status</th>                 
                   </thead>
                   <tbody>
                       <?php

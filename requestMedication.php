@@ -1,6 +1,7 @@
 <?php include 'connection.php' ?>
 <?php session_start(); ?>
 <?php include 'isLoggedin.php'; ?>
+<?php $id = $_SESSION['user_id']; ?>
 <?php $role = $_SESSION['user_role']; ?>
 <?php $name = $_SESSION['user_name']; ?>
 <?php
@@ -13,7 +14,7 @@
 ?>
 
 <?php
-    $s = "select r.id as id, r.status as status, r.problem as problem, u.name as name from records as r INNER JOIN users as u ON r.userId = u.id where r.report = 'Waiting'";
+    $s = "select r.id as id, r.status as status, r.problem as problem, u.name as name from records as r INNER JOIN users as u ON r.userId = u.id where r.report = 'Waiting' and r.doctorId = $id";
     $q = mysqli_query($conn, $s);
 ?>
 

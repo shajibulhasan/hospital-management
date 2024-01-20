@@ -33,3 +33,6 @@ CREATE TABLE doctors(
     address varchar(200),
     qualification varchar(200)
     );
+
+INSERT INTO doctors(name, email, phone, password, role, address, qualification)
+VALUES('Dr Shajibul Hasan', 'hasan@gmail.com', '01589146732', '123456', 'Doctor', 'Dhaka', 'Master of Medical Science (MMSc, MMedSc)');
