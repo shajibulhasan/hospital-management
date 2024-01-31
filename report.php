@@ -15,9 +15,15 @@
 ?>
 
 <?php
-    $s = "select r.problem as problem, u.name as name from records as r INNER JOIN users as u ON r.userId = u.id where r.id = $record_id";
-    $q = mysqli_query($conn, $s);
-    $r = mysqli_fetch_array($q);
+    $s1 = "select userId from records where id = $record_id";
+    $q1 = mysqli_query($conn, $s1);
+    $r1 = mysqli_fetch_array($q1);
+    $u = $r1['userId'];
+    if($q1){
+      $s = "select r.problem as problem, u.name as name, r.report as report from records as r INNER JOIN users as u ON r.userId = u.id where r.userId = $u";
+      $q = mysqli_query($conn, $s);
+    }  
+   
 ?>
 
 <!DOCTYPE html>
@@ -110,20 +116,34 @@
                 </ul>
               </nav>
             </div>
-            
+                <table class="table table-striped">
+                  <thead>
+                      <th>ID</th>
+                      <th>Patient Name</th>
+                      <th>Problem</th>                   
+                      <th>Comment</th>                  
+                  </thead>
+                  <tbody>
+                      <?php
+                      $n=1;
+                          while($r = mysqli_fetch_array($q)) { ?>
+                              <tr>
+                                  <td><?php echo $n++; ?></td>
+                                  <td><?php echo $r['name']?></td>
+                                  <td><?php echo $r['problem']?></td>
+                                  <td><?php echo $r['report']?></td>
+                              </tr>
+                          <?php }
+                      ?>
+                  </tbody>
+                </table>
                 <form action="" method="post">
                   <div class="form-group">
-                      <label for="name"><h4>Patient Name: <?php echo $r['name']?></h4></label>
-                  </div>
-                  <div class="form-group">
-                      <label for="email"><h4>Problem: <?php echo $r['problem']?></h4></label>
-                  </div>
-                  <div class="form-group">
-                      <label for="report"><h4>Report:</h4></label>
+                      <label for="report"><h4>Comment:</h4></label>
                       <input type="text" class="form-control" value="" id="report" name="report">
                   </div>
                   <div class="form-group">
-                      <button type="submit" class="btn btn-primary" name="btnCreate">Submit Report</button>
+                      <button type="submit" class="btn btn-primary" name="btnCreate">Submit Comment</button>
                   </div>
                 </form>
 
@@ -152,7 +172,7 @@
         $report = $_POST['report'];
         $s = "UPDATE records SET Report= '$report' where id=$record_id";
         if(mysqli_query($conn, $s)){
-            echo 'Successfully Create Appointment.';
+          header('Location: patientList.php');
           }
     }
 ?>

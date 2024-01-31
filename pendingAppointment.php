@@ -14,7 +14,7 @@
 ?>
 
 <?php
-  $s = "select r.id as id, d.name as dName, r.problem as problem, u.name as name from records as r INNER JOIN users as u on r.doctorId=u.id INNER JOIN doctors as d ON r.doctorId=d.id where r.status = 'Not Approve'";
+  $s = "select r.id as id, u.name as name, d.name as dName, r.problem as problem from records as r INNER JOIN doctors as d ON r.doctorId = d.id INNER JOIN users as u ON r.userId = u.id where r.status = 'Not Approve'";
   $q = mysqli_query($conn, $s);
 ?>
 

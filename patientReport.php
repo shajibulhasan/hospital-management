@@ -14,7 +14,7 @@
 ?>
 
 <?php
-  $s = "select r.id as id, d.name as dName, r.problem as problem, u.name as name, r.status as status, r.Report as report from records as r INNER JOIN users as u on r.doctorId=u.id INNER JOIN doctors as d ON r.doctorId=d.id where r.Report != 'Waiting'";
+  $s = "select r.id as id, d.name as dName, r.problem as problem, u.name as name, r.status as status, r.Report as report from records as r INNER JOIN users as u on r.userId=u.id INNER JOIN doctors as d ON r.doctorId=d.id where r.Report != 'Waiting'";
   $q = mysqli_query($conn, $s);
 ?>
 
@@ -128,7 +128,7 @@
                       <th>Patient Name</th>
                       <th>Doctor Name</th>                      
                       <th>Problem</th>                  
-                      <th>Report</th>                 
+                      <th>Comment</th>                 
                   </thead>
                   <tbody>
                       <?php

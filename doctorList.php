@@ -119,6 +119,7 @@
                 <thead>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Email</th>
                     <th>Qualification</th>
                     <th>Phone</th>                    
                 </thead>
@@ -129,6 +130,7 @@
                             <tr>
                                 <td><?php echo $n++; ?></td>
                                 <td><?php echo $r['name']?></td>
+                                <td><?php echo $r['email']?></td>
                                 <td><?php echo $r['qualification']?></td>
                                 <td><?php echo $r['phone']?></td>
                             </tr>

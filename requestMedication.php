@@ -126,7 +126,7 @@
                                   <td><?php echo $r['name']?></td>
                                   <td><?php echo $r['status']?></td>
                                   <td><?php echo $r['problem']?></td>
-                                  <td><a class="btn btn-primary" href="report.php?record_id=<?php echo $r['id'] ?>">Report</a></td>
+                                  <td><a class="btn btn-primary" href="report.php?record_id=<?php echo $r['id'] ?>">History</a></td>
                               </tr>
                           <?php }
                       ?>
