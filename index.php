@@ -83,10 +83,11 @@
               AND password='".$password."'";
         $s2 = "SELECT * from doctors where email='".$email."' 
               AND password='".$password."'";
-        $q2 = mysqli_query($conn, $s2);
-        $q = mysqli_query($conn, $s);        
+        $q = mysqli_query($conn, $s);
+        $q2 = mysqli_query($conn, $s2);       
         $row = mysqli_fetch_assoc($q);
         $row2 = mysqli_fetch_assoc($q2);
+ 
         if($row){
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_name'] = $row['name'];
@@ -94,26 +95,18 @@
             if($row['role']=='Patient'){
                 header('Location: dashboardPatient.php');
             }
-            elseif($row['role']=='Doctor'){
-                header('Location: dashboardDoctor.php');
-            }
             elseif($row['role']=='Scheduler'){
                 header('Location: dashboardScheduler.php');
+            }
+            elseif($row['role']=='Admin'){
+                header('Location: dashboardAdmin.php');
             }
         }
         elseif ($row2) {
             $_SESSION['user_id'] = $row2['id'];
             $_SESSION['user_name'] = $row2['name'];
             $_SESSION['user_role'] = $row2['role'];
-            if($row2['role']=='Patient'){
-                header('Location: dashboardPatient.php');
-            }
-            elseif($row2['role']=='Doctor'){
-                header('Location: dashboardDoctor.php');
-            }
-            elseif($row2['role']=='Scheduler'){
-                header('Location: dashboardScheduler.php');
-            }
+            header('Location: dashboardDoctor.php');
         }
         else{
             echo 'User not Registered/Wrong Information';
